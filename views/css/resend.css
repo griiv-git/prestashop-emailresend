@@ -1,0 +1,95 @@
+/**
+ * Copyright since 2024 Griiv
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @author    Griiv
+ * @copyright Since 2024 Griiv
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License ("AFL") v. 3.0
+ */
+
+/* Resend button in grid */
+.griiv-resend-btn {
+    cursor: pointer;
+}
+
+.griiv-resend-btn:hover {
+    opacity: 0.8;
+}
+
+/* Modal styles */
+#griiv-resend-modal .modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#griiv-preview-frame {
+    background: #fff;
+    border-radius: 4px;
+}
+
+/* Loading state */
+#griiv-loading {
+    padding: 40px 20px;
+}
+
+#griiv-loading .material-icons {
+    font-size: 32px;
+    color: #25b9d7;
+}
+
+/* Spinner in button */
+.griiv-spinner {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Message alerts */
+#griiv-message {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/* Error state */
+#griiv-error {
+    margin: 20px 0;
+}
+
+/* Form improvements */
+#griiv-resend-modal .form-group {
+    margin-bottom: 1rem;
+}
+
+#griiv-resend-modal .form-control-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+#griiv-resend-modal hr {
+    margin: 1.5rem 0;
+}
+
+/* Custom checkbox styling */
+#griiv-attachments-group {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+/* Rotating animation */
+.rotating {
+    animation: griiv-spin 1s linear infinite;
+}
+
+@keyframes griiv-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "name": "griiv/griivemailresend",
+    "description": "PrestaShop module for email preview and resend",
+    "type": "prestashop-module",
+    "license": "AFL-3.0",
+    "authors": [
+        {
+            "name": "Griiv",
+            "email": "contact@griiv.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Griiv\\EmailResend\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "griiv/prestashop-module-installer": "^1.0",
+        "griiv/prestashop-module-contracts": "^1.0"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

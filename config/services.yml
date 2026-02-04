@@ -1,0 +1,71 @@
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+
+  # Context (for hooks)
+  griiv.email_resend.context:
+    class: Context
+    factory: ['Context', 'getContext']
+
+  # Repositories
+  Griiv\EmailResend\Repository\EmailContentRepository:
+    class: Griiv\EmailResend\Repository\EmailContentRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Griiv\EmailResend\Entity\GriivEmailContent
+
+  Griiv\EmailResend\Repository\EmailAttachmentRepository:
+    class: Griiv\EmailResend\Repository\EmailAttachmentRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Griiv\EmailResend\Entity\GriivEmailAttachment
+
+  # Services
+  Griiv\EmailResend\Service\PendingEmailDataService:
+    class: Griiv\EmailResend\Service\PendingEmailDataService
+
+  Griiv\EmailResend\Service\EmailCaptureService:
+    class: Griiv\EmailResend\Service\EmailCaptureService
+    arguments:
+      $entityManager: '@doctrine.orm.entity_manager'
+
+  Griiv\EmailResend\Service\EmailResendService:
+    class: Griiv\EmailResend\Service\EmailResendService
+    arguments:
+      $contentRepository: '@Griiv\EmailResend\Repository\EmailContentRepository'
+      $attachmentRepository: '@Griiv\EmailResend\Repository\EmailAttachmentRepository'
+
+  Griiv\EmailResend\Service\OrphanCleanerService:
+    class: Griiv\EmailResend\Service\OrphanCleanerService
+    arguments:
+      $contentRepository: '@Griiv\EmailResend\Repository\EmailContentRepository'
+      $attachmentRepository: '@Griiv\EmailResend\Repository\EmailAttachmentRepository'
+
+  # Hooks
+  Griiv\EmailResend\Hook\Action\ActionEmailSendBefore:
+    class: Griiv\EmailResend\Hook\Action\ActionEmailSendBefore
+    arguments:
+      $context: '@griiv.email_resend.context'
+      $pendingDataService: '@Griiv\EmailResend\Service\PendingEmailDataService'
+
+  Griiv\EmailResend\Hook\Action\ActionObjectMailAddAfter:
+    class: Griiv\EmailResend\Hook\Action\ActionObjectMailAddAfter
+    arguments:
+      $context: '@griiv.email_resend.context'
+      $captureService: '@Griiv\EmailResend\Service\EmailCaptureService'
+      $pendingDataService: '@Griiv\EmailResend\Service\PendingEmailDataService'
+
+  Griiv\EmailResend\Hook\Display\DisplayBackOfficeHeader:
+    class: Griiv\EmailResend\Hook\Display\DisplayBackOfficeHeader
+    arguments:
+      $context: '@griiv.email_resend.context'
+      $router: '@router'
+
+  # Forms
+  Griiv\EmailResend\Form\ConfigurationType:
+    class: Griiv\EmailResend\Form\ConfigurationType
+    parent: 'form.type.translatable.aware'
+    tags:
+      - { name: form.type }

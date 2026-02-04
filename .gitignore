@@ -1,0 +1,22 @@
+# Composer
+/vendor/
+
+# Uploads (user content)
+/uploads/*
+!/uploads/.gitkeep
+!/uploads/.htaccess
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+/var/cache/

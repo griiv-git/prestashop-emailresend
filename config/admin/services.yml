@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+
+  # Controller
+  Griiv\EmailResend\Controller\Admin\EmailResendController:
+    class: Griiv\EmailResend\Controller\Admin\EmailResendController
+    arguments:
+      $contentRepository: '@Griiv\EmailResend\Repository\EmailContentRepository'
+      $attachmentRepository: '@Griiv\EmailResend\Repository\EmailAttachmentRepository'
+      $resendService: '@Griiv\EmailResend\Service\EmailResendService'
+      $orphanCleaner: '@Griiv\EmailResend\Service\OrphanCleanerService'
+    tags:
+      - { name: controller.service_arguments }

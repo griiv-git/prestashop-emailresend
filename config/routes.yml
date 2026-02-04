@@ -1,0 +1,41 @@
+admin_griiv_email_resend_index:
+  path: /griiv-email-resend
+  methods: [GET]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::indexAction'
+    _legacy_controller: AdminGriivEmailResend
+
+admin_griiv_email_resend_configuration:
+  path: /griiv-email-resend/configuration
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::configurationAction'
+    _legacy_controller: AdminGriivEmailResend
+
+admin_griiv_email_resend_clean_orphans:
+  path: /griiv-email-resend/clean-orphans
+  methods: [POST]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::cleanOrphansAction'
+    _legacy_controller: AdminGriivEmailResend
+
+admin_griiv_email_resend_get_content:
+  path: /griiv-email-resend/get-content
+  methods: [POST]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::getContentAction'
+    _legacy_controller: AdminGriivEmailResend
+
+admin_griiv_email_resend_get_employees:
+  path: /griiv-email-resend/get-employees
+  methods: [POST]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::getEmployeesAction'
+    _legacy_controller: AdminGriivEmailResend
+
+admin_griiv_email_resend_send:
+  path: /griiv-email-resend/send
+  methods: [POST]
+  defaults:
+    _controller: 'Griiv\EmailResend\Controller\Admin\EmailResendController::resendAction'
+    _legacy_controller: AdminGriivEmailResend

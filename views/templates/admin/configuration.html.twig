@@ -1,0 +1,77 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <h3 class="card-header">
+            {{ 'Settings'|trans({}, 'Modules.Griivemailresend.Admin') }}
+        </h3>
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="form-group row">
+                    {{ form_label(form.store_attachments) }}
+                    <div class="col-sm">
+                        {{ form_widget(form.store_attachments) }}
+                        {{ form_errors(form.store_attachments) }}
+                        <small class="form-text text-muted">
+                            {{ form_help(form.store_attachments) }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.storage_mode) }}
+                    <div class="col-sm">
+                        {{ form_widget(form.storage_mode) }}
+                        {{ form_errors(form.storage_mode) }}
+                        <small class="form-text text-muted">
+                            {{ form_help(form.storage_mode) }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.max_size) }}
+                    <div class="col-sm">
+                        <div class="input-group" style="max-width: 200px;">
+                            {{ form_widget(form.max_size) }}
+                            <div class="input-group-append">
+                                <span class="input-group-text">MB</span>
+                            </div>
+                        </div>
+                        {{ form_errors(form.max_size) }}
+                        <small class="form-text text-muted">
+                            {{ form_help(form.max_size) }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm offset-sm-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="material-icons">save</i>
+                            {{ 'Save'|trans({}, 'Admin.Actions') }}
+                        </button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <h3 class="card-header">
+            <i class="material-icons">delete_sweep</i>
+            {{ 'Maintenance'|trans({}, 'Modules.Griivemailresend.Admin') }}
+        </h3>
+        <div class="card-body">
+            <p>
+                {{ 'Clean up records where the original email no longer exists in ps_mail table.'|trans({}, 'Modules.Griivemailresend.Admin') }}
+            </p>
+            <form action="{{ path('admin_griiv_email_resend_clean_orphans') }}" method="post">
+                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('{{ 'Are you sure?'|trans({}, 'Admin.Notifications.Warning') }}');">
+                    <i class="material-icons">delete</i>
+                    {{ 'Clean orphan records'|trans({}, 'Modules.Griivemailresend.Admin') }}
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
