@@ -33,4 +33,42 @@ class Installer extends GriivInstaller
             && $this->unregisterHooks($this->module->getHooks())
             && $this->uninstallTabs($this->module->getTabs());
     }
+
+    protected function installDatabase(): bool
+    {
+        $sqlFile = sprintf('%s/%s/sql/install.sql', _PS_MODULE_DIR_, $this->module->name);
+
+        if (!file_exists($sqlFile) || !is_readable($sqlFile)) {
+            return false;
+        }
+
+        $content = file_get_contents($sqlFile);
+        $content = str_replace(['DB_PREFIX', 'MYSQL_ENGINE'], [_DB_PREFIX_, _MYSQL_ENGINE_], $content);
+
+        $statements = array_filter(
+            array_map('trim', explode(';', $content)),
+            function ($s) { return !empty($s); }
+        );
+
+        return $this->executeQueries($statements);
+    }
+
+    protected function uninstallDatabase(): bool
+    {
+        $sqlFile = sprintf('%s/%s/sql/uninstall.sql', _PS_MODULE_DIR_, $this->module->name);
+
+        if (!file_exists($sqlFile) || !is_readable($sqlFile)) {
+            return false;
+        }
+
+        $content = file_get_contents($sqlFile);
+        $content = str_replace(['DB_PREFIX', 'MYSQL_ENGINE'], [_DB_PREFIX_, _MYSQL_ENGINE_], $content);
+
+        $statements = array_filter(
+            array_map('trim', explode(';', $content)),
+            function ($s) { return !empty($s); }
+        );
+
+        return $this->executeQueries($statements);
+    }
 }

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `DB_PREFIX_griiv_email_content` (
+CREATE TABLE IF NOT EXISTS `DB_PREFIXgriiv_email_content` (
     `id_content` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `id_mail` INT(11) UNSIGNED NOT NULL,
     `html_content` LONGTEXT,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `DB_PREFIX_griiv_email_content` (
     KEY `date_add` (`date_add`)
 ) ENGINE=MYSQL_ENGINE DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `DB_PREFIX_griiv_email_attachment` (
+CREATE TABLE IF NOT EXISTS `DB_PREFIXgriiv_email_attachment` (
     `id_attachment` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `id_mail` INT(11) UNSIGNED NOT NULL,
     `filename` VARCHAR(255) NOT NULL,

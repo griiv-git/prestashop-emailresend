@@ -66,6 +66,9 @@ services:
   # Forms
   Griiv\EmailResend\Form\ConfigurationType:
     class: Griiv\EmailResend\Form\ConfigurationType
+    public: true
+    autowire: false
+    autoconfigure: false
     parent: 'form.type.translatable.aware'
     tags:
       - { name: form.type }
